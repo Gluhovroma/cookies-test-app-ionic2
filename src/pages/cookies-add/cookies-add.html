@@ -1,0 +1,63 @@
+
+<ion-header>
+  <ion-navbar>    
+    <ion-title>Добавление печенек
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    
+
+    <form id="login-form" [formGroup]="cookiesAddForm" novalidate>
+      <ion-row responsive-sm>
+        <ion-col>
+            <button  *ngIf="!img" class="secondary" ion-button block secondary (click)="openGallery()"  outline>
+        <ion-icon padding name="attach"></ion-icon>
+        Загрузить картинку
+    </button>
+    <p *ngIf="!img && submited" danger padding-left style="color:red">
+       Пожалуйста, добавьте картинку
+      </p>
+      <ion-card *ngIf="img">
+      <img src="{{img}}"/>
+  
+    </ion-card>
+    <button *ngIf="img" class="secondary" ion-button block secondary (click)="clearImg()" outline>       
+        <ion-icon padding name="ios-close-circle-outline"></ion-icon>
+        Отменить картинку
+    </button>
+        </ion-col>
+      </ion-row>
+    
+		
+      <ion-item>
+        <ion-label floating primary>Название</ion-label>
+        <ion-input [formControl]="title" type="text" required>
+        </ion-input>
+      </ion-item>
+      <p *ngIf="title.hasError('required') && submited" danger padding-left style="color:red">
+        Пожалуйста, Введите название
+      </p>
+
+      <ion-item>
+        <ion-label floating primary>Описание</ion-label>
+        <ion-input type="text" [formControl]="description" required>
+        </ion-input>
+      </ion-item>
+      <p *ngIf="description.hasError('required') && submited" danger padding-left style="color:red">
+        Пожалуйста, Введите описание
+      </p>
+
+      <ion-row responsive-sm>
+        <ion-col>
+          <button (click)="onSubmit(cookiesAddForm.value)" type="submit" primary block ion-button>Добавить</button>
+        </ion-col>
+       
+      </ion-row>
+    </form>
+  </ion-list>
+
+</ion-content>

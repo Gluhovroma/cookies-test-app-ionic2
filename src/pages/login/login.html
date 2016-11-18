@@ -1,0 +1,42 @@
+
+<ion-header>
+  <ion-navbar>    
+    <ion-title>Авторизация</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    
+
+    <form id="login-form" [formGroup]="authForm" novalidate>
+      <ion-item>
+        <ion-label floating primary>Логин</ion-label>
+        <ion-input [formControl]="username" type="text" required>
+        </ion-input>
+      </ion-item>
+      <p *ngIf="username.hasError('required') && submited" danger padding-left style="color:red">
+        Пожалуйста, введите логин
+      </p>
+
+      <ion-item>
+        <ion-label floating primary>Пароль</ion-label>
+        <ion-input type="password" [formControl]="password" required>
+        </ion-input>
+      </ion-item>
+      <p *ngIf="password.hasError('required') && submited" danger padding-left style="color:red">
+        Пожалуйста, введите пароль
+      </p>
+
+      <ion-row responsive-sm>
+      
+        <ion-col>
+          <button (click)="onSubmit(authForm.value)" type="submit" primary block ion-button>Login</button>
+        </ion-col>
+       
+      </ion-row>
+    </form>
+  </ion-list>
+
+</ion-content>
